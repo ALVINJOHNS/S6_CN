@@ -13,36 +13,16 @@
 // Function designed for chat between client and server. 
 void func(int connfd) 
 { 
-	char buff[MAX]; 
-	int n,num,fact=1; 
-	// infinite loop for chat 
+	char buff1[80],buff2[80]; 
 	for (;;) { 
-		
-		bzero(buff, MAX); 
-
-		// read the message from client and copy it in buffer 
-		read(connfd, buff, sizeof(buff)); 
-		num=atoi(buff);
-		for(int i=1;i<=num;i++){
-			fact=fact*i;
-		}
-		
-		
-		// print buffer which contains the client contents 
-		printf("From client: %s\t Factorial is: %d\t To client : ", buff,fact); 
-		bzero(buff, MAX); 
-		n = 0; 
-		// copy server message in the buffer 
-		while ((buff[n++] = getchar()) != '\n'); 
-		// and send that buffer to client 
-		write(connfd, buff, sizeof(buff)); 
-
-		// if msg contains "Exit" then server exit and chat ended. 
-		if (strncmp("exit", buff, 4) == 0) { 
-			printf("Server Exit...\n"); 
-			break; 
-		} 
-	} 
+		printf("Enter the string : ");
+		scanf("%s",buff1);
+		write(connfd, buff1, sizeof(buff1));
+		read(connfd, buff2, sizeof(buff2));
+		printf("From Server : %s", buff2);
+		if(strncmp(buff2,"exit",4)==0)
+			break;
+	}
 } 
 
 // Driver function 

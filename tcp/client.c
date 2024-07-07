@@ -10,9 +10,7 @@
 void func(int sockfd)
 {
 	char buff1[80],buff2[80];
-	int n;
-	while (10) {
-		
+	for (;;) { 
 		printf("Enter the string : ");
 		scanf("%s",buff1);
 		write(sockfd, buff1, sizeof(buff1));
@@ -21,7 +19,6 @@ void func(int sockfd)
 		if(strncmp(buff2,"exit",4)==0)
 			break;
 	}
-	close(sockfd);
 }
 
 int main()
