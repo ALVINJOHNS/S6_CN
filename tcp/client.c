@@ -9,16 +9,16 @@
 
 void func(int sockfd)
 {
-	char buff[80];
+	char buff1[80],buff2[80];
 	int n;
-	while (1) {
+	while (10) {
 		
 		printf("Enter the string : ");
-		scanf("%s",buff);
-		write(sockfd, buff, sizeof(buff));
-		read(sockfd, buff, sizeof(buff));
-		printf("From Server : %s", buff);
-		if(strncmp(buff,"exit",0))
+		scanf("%s",buff1);
+		write(sockfd, buff1, sizeof(buff1));
+		read(sockfd, buff2, sizeof(buff2));
+		printf("From Server : %s", buff2);
+		if(strncmp(buff2,"exit",4)==0)
 			break;
 	}
 	close(sockfd);
